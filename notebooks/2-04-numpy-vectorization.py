@@ -128,7 +128,6 @@ y = []
 for e in x:
     y.append(np.sin(e))
 
-
 # %% [markdown]
 # ### dessiner un cercle de rayon `r`
 
@@ -146,7 +145,16 @@ for e in x:
 #    demandez à ce qu'elles soient égales avec `plt.axis('equal')`
 
 # %%
-# votre code
+from matplotlib import pyplot as plt
+import numpy as np
+N = 10000
+r = np.linspace(0,1,N)
+theta = np.linspace(0, 10* np.pi, N)
+x = r*np.sin(theta)
+y = r*np.cos(theta)
+plt.axis('equal')
+plt.plot(x,y)
+
 
 # %% [markdown]
 # ### calculer une fonction polynomiale

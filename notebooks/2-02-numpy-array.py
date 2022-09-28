@@ -787,8 +787,13 @@ np.random.randn(2, 3, 1)
 #
 # 2. affichez l'image avec `plt.imshow`
 
-# %%
-# votre code ici
+# %% scrolled=true
+import numpy as np
+from random import randint
+from matplotlib import pyplot as plt
+A = np.random.randint(0, 255, (5000,5000,3))
+plt.imshow(A)
+
 
 # %% [markdown] tags=["level_intermediate", "framed_cell"]
 # ## comparaison des temps de création tableaux - avancé
