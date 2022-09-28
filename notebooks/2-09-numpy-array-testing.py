@@ -74,7 +74,7 @@ import numpy as np
 # <br>
 #     
 # générons aléatoirement un tableau d'entiers  
-# (ici entre $0$ et $9$)
+# (ici entre `0` et `9`)
 #    
 # ```python
 # tab = np.random.randint(10, size=(2, 3))
@@ -285,9 +285,12 @@ np.count_nonzero(tab%2==0, axis=0)
 # on peut aussi construire les indices des éléments sélectionnés  
 # pour les repérer dans le tableau original
 
-# %% {"scrolled": true}
+# %%
 # le code
 tab = np.random.randint(-10, 10, size=(2, 3, 4))
+tab
+
+# %% {"scrolled": true}
 print(tab[np.greater(tab, 0)])
 print(tab[tab > 0])
 

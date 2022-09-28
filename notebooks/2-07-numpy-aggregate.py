@@ -433,6 +433,9 @@ print(    np.unravel_index(tab.argmax(), tab.shape)    )
 
 # %% {"tags": ["level_advanced"]}
 # votre code ici
+def unravel_index(index, shape):
+    pass
+
 
 # %% {"tags": ["level_advanced"]}
 # devrait retourner [1, 2, 0, 4]

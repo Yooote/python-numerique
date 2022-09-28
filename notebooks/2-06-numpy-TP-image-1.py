@@ -93,7 +93,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Transformez le en tableau jaune (en un seul slicing) et affichez-le
 # 1. Affichez les valeurs RGB du premier pixel de l'image, et du dernier
 # 1. Faites un quadrillage d'une ligne bleue, toutes les 10 lignes et colonnes et affichez-le
-# 1. Affichez les valeurs RGB du premier et du dernier pixel de l'image
 
 # %%
 # votre code
@@ -214,7 +213,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Transformer l'image en deux images en niveaux de gris :   
 # a. en mettant pour chaque pixel la moyenne de ses valeurs R, G, B  
 # b. en utilisant la correction 'Y' (qui corrige le constrate) basée sur la formule  
-#    G = $0.299\,R + 0.587\,V + 0.114\,B\,$ 
+#    `G = 0.299 * R + 0.587 * V + 0.114 * B`
 #
 # 1. Passez au carré les pixels et affichez l'image
 #
