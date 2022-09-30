@@ -30,8 +30,6 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
-
-
 # %% [markdown]
 # # suite du TP simple avec des images
 #
@@ -117,7 +115,8 @@ from matplotlib import pyplot as plt
 # <img src="patchwork-all.jpg" width="200px">
 
 # %%
-# votre code
+col = plt.imread('rgb-codes.txt')
+print(col)
 
 # %% [markdown]
 # ## Somme des valeurs RGB d'une image
