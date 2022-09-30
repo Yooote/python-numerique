@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -28,8 +28,6 @@
 # %%
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
-
-
 
 # %% [markdown]
 # # TP sur les types des colonnes
@@ -78,6 +76,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #  * cet attribut permet d'accéder aux méthodes classiques des `str` (comme par exemple `upper()`)
 #  * ces fonctions sont naturellement vectorisées  
 #    i.e. elles s'appliquent à toute la série (sans for-python)  
+# <br>
 #   
 # 1. observer la valeur de la colonne `Name` dans la dataframe originale  
 #    a-t-elle été modifiée ?  

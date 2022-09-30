@@ -30,8 +30,6 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
-
-
 # %% [markdown]
 # # *broadcasting*
 
@@ -654,7 +652,16 @@ grp+mat
 #    False
 # ```
 
-# %% {"scrolled": true}
+# %%
+# à vous
+def test_compatibility(s1, s2):
+    pass
+
+def are_broadcast_compatible(s1, s2):
+    pass
+
+
+# %% {"scrolled": true, "tags": ["raises-exception"]}
 # pour corriger votre code
 
 s1 = (1, 2)
