@@ -63,7 +63,8 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # <br>
 
 # %%
-# votre code
+import numpy as np
+import matplotlib.pyplot as plt
 
 # %% [markdown]
 # ## création d'une image de couleur
@@ -95,7 +96,29 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Faites un quadrillage d'une ligne bleue, toutes les 10 lignes et colonnes et affichez-le
 
 # %%
-# votre code
+img = np.zeros((91,91,3), dtype = int)
+img[:,:] = 255
+plt.imshow(img)
+plt.show()
+
+img_2 = np.copy(img) 
+img_2[:,:] = 0
+plt.imshow(img_2)
+plt.show()
+
+img_3 = np.copy(img) 
+img_3[:,:,2] = 0
+plt.imshow(img_3)
+plt.show()
+
+print(img[0,0])
+print(img[-1,-1])
+
+img_4 = np.copy(img_3) 
+img_4[::10,:,:] = [0,0,255]
+img_4[:,::10,:] = [0,0,255]
+plt.imshow(img_4)
+plt.show()
 
 # %% [markdown]
 # ## lecture d'une image en couleur
@@ -125,7 +148,26 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Affichez le rectangle de 10 x 10 pixels en haut de l'image
 
 # %%
-# votre code
+plt.imread('les-mines.jpg')
+im = plt.imread('les-mines.jpg')
+im.flags.writeable
+plt.imshow(im)
+plt.show()
+
+# on crée un tableau numpy de taille : 
+print(np.size(im))
+# et de dimentions
+print(np.shape(im))
+# on utilise 8 bits par couleur (1 octet) et on a trois couleur, chaque pixel est codé sur 3 octets
+# les pixels sont des listes de 3 entiers non signés 8 bits
+
+print(np.min(im))
+print(np.max(im))
+
+im_2 = np.copy(im)
+im_2 = im_2[0:10,0:10,:]
+plt.imshow(im_2)
+plt.show()
 
 # %% [markdown]
 # ## accès à des parties d'image
@@ -142,7 +184,44 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Affichez le dernier pixel de l'image
 
 # %%
-# votre code
+im = plt.imread('les-mines.jpg')
+plt.imshow(im)
+plt.show()
+
+
+im_2 = np.copy(im)
+im_2 = im_2[::2,:,:]
+im_2 = im_2[:,::2,:]
+plt.imshow(im_2)
+plt.show()
+
+im_3 = np.copy(im)
+im_3 = im_3[::5,:,:]
+im_3 = im_3[:,::5,:]
+plt.imshow(im_3)
+plt.show()
+
+im_4 = np.copy(im)
+im_4 = im_4[::10,:,:]
+im_4 = im_4[:,::10,:]
+plt.imshow(im_4)
+plt.show()
+
+im_5 = np.copy(im)
+im_5 = im_5[::20,:,:]
+im_5 = im_5[:,::20,:]
+plt.imshow(im_5)
+plt.show()
+
+im_6 = np.copy(im)
+im_6 = im_6[(int(np.shape(im)[0]/2)-5):(int(np.shape(im)[0]/2)+5),(int(np.shape(im)[1]/2)-10):(int(np.shape(im)[1]/2)+10),:]
+plt.imshow(im_6)
+plt.show()
+
+im_7 = np.copy(im)
+im_7 = im_7[(int(np.shape(im)[0]/2)-50):(int(np.shape(im)[0]/2)+50),(int(np.shape(im)[1]/2)-100):(int(np.shape(im)[1]/2)+100),:]
+plt.imshow(im_7)
+plt.show()
 
 # %% [markdown]
 # ## canaux rgb de l'image
@@ -181,9 +260,40 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. enfin affichez les 20 dernières lignes et colonnes du carré à rayures
 
 # %%
-# votre code
+im = plt.imread('les-mines.jpg')
+im_r = np.copy(im) 
+im_r = im[:,:,0]
+plt.imshow(im_r, cmap = 'Reds')
+plt.show()
+
+im_g = np.copy(im) 
+im_g = im[:,:,1]
+plt.imshow(im_g, cmap = 'Greens')
+plt.show()
+
+im_b = np.copy(im) 
+im_b = im[:,:,2]
+plt.imshow(im_b, cmap = 'Blues')
+plt.show()
+
+im_2 = np.copy(im) 
+im_2[-200:,-200:] = [219,112,147]
+plt.imshow(im_2)
+plt.show()
+
+im_3 = np.copy(im)
+im_3[-200:,-200:] = [255, 255, 255]
+im_3[-200::5,-200:] = [255, 0, 0]
+plt.imshow(im_3)
+plt.show()
+
+im_4 = np.copy(im_3)
+im_4 = im_4[-20:,-20:]
+plt.imshow(im_4)
+plt.show()
 
 # %% [markdown]
+#
 # ## transparence des images
 
 # %% [markdown]
@@ -200,7 +310,13 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Copiez-y l'image initiale, mettez le quatrième canal à `128` et affichez l'image
 
 # %%
-# votre code
+im = plt.imread('les-mines.jpg')
+print(np.shape(im))
+
+im_alpha = np.empty((533, 800, 4), dtype = int)
+im_alpha[:,:,0:3] = im
+im_alpha[:,:,3:4] = 128
+plt.imshow(im_alpha)
 
 # %% [markdown]
 # ## image en niveaux de gris en `float`
@@ -223,7 +339,38 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # en niveaux de gris
 
 # %%
-# votre code
+im = plt.imread('les-mines.jpg')
+im = np.array(im, dtype=float)
+im*=1/255
+
+im_2 = 1/3 * (im[:,:,0]+im[:,:,1]+im[:,:,2])
+im_3 = (0.299*im[:,:,0]+0.587*im[:,:,1]+0.114*im[:,:,2])
+im_4 = np.sqrt(im_3)
+
+plt.imshow(im_2, cmap = 'gray')
+plt.show()
+
+plt.imshow(im_3, cmap = 'gray')
+plt.show()
+
+plt.imshow(im_4, cmap = 'gray')
+plt.show()
+
+im_2 = im_2*255
+im_3 = im_3*255
+im_4 = im_4*255
+im_2 = np.array(im_2, dtype=np.int8)
+im_3 = np.array(im_3, dtype=np.int8)
+im_4 = np.array(im_4, dtype=np.int8)
+
+
+plt.imshow(im_2, cmap = 'gray')
+plt.show()
+plt.imshow(im_3, cmap = 'gray')
+plt.show()
+plt.imshow(im_4, cmap = 'gray')
+plt.show()
+
 
 # %% {"tags": ["raises-exception"]}
 # %%timeit 
@@ -324,4 +471,25 @@ plt.tight_layout()
 #    2 3 1
 
 # %%
-# votre code
+fig, axes = plt.subplots(1,3)
+axes[0].imshow(im_2, cmap = 'Greys')
+axes[1].imshow(im_3, cmap = 'Greys')
+axes[2].imshow(im_4, cmap = 'Greys')
+plt.show()
+
+fig, axes = plt.subplots(3,3)
+axes[0,0].imshow(im_2, cmap = 'Greys')
+axes[0,1].imshow(im_3, cmap = 'Greys')
+axes[0,2].imshow(im_4, cmap = 'Greys')
+
+axes[1,1].imshow(im_2, cmap = 'Greys')
+axes[1,2].imshow(im_3, cmap = 'Greys')
+axes[1,0].imshow(im_4, cmap = 'Greys')
+
+axes[2,2].imshow(im_2, cmap = 'Greys')
+axes[2,0].imshow(im_3, cmap = 'Greys')
+axes[2,1].imshow(im_4, cmap = 'Greys')
+plt.show()
+
+
+# %%
