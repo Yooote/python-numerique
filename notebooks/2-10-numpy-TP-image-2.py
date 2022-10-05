@@ -115,8 +115,57 @@ from matplotlib import pyplot as plt
 # <img src="patchwork-all.jpg" width="200px">
 
 # %%
-col = plt.imread('rgb-codes.txt')
-print(col)
+fichier = 'rgb-codes.txt' 
+table =  open(fichier)
+content = table.read()
+all_lines = content.split('\n')
+ 
+colors ={}    
+    
+for line in all_lines : 
+    if line =="":
+        continue
+    tokens = line.split(" ")
+    colors[tokens[0]] = (int(tokens[1]),int(tokens[2]),int(tokens[3]))
+
+#print(colors)
+
+#print('Red',colors['Red'],'Lime',colors['Lime'],'Blue',colors['Blue'])
+
+taille = 20
+
+def patchwork(couleurs,nuancier) : 
+    """en entrée une liste et un dictionnaire -> un tableau numpy"""
+    tableau_indices = np.random.randint(0,len(couleurs),size = (1,taille**2))
+    #print(tableau_indices)
+    image = []
+    for i in range(len(tableau_indices[0])) :
+        for  j in range(0,3) :
+            image.append(nuancier[couleurs[tableau_indices[0][i]]][j])
+    np.array(image)
+    image = np.reshape(image,(taille,taille,3)) 
+    return(image)
+
+im = patchwork(['Red','Lime','Blue','AliceBlue','Yellow'],colors)
+#plt.imshow(im)
+#plt.show()
+
+liste_couleurs_rd = []
+nb_couleurs = len(colors)
+tt_couleurs = list(colors)
+for i in range(nb_couleurs):
+    liste_couleurs_rd.append(tt_couleurs[np.random.randint(0,len(tt_couleurs))])
+#print(liste_couleurs_rd)
+
+im_2 = patchwork(liste_couleurs_rd,colors)
+im_2 = im_2.astype(np.uint8)
+print(im_2.dtype)
+plt.imshow(im_2)
+plt.show()
+
+plt.imsave('patchowrk.jpg', im_2)
+
+table.close()
 
 # %% [markdown]
 # ## Somme des valeurs RGB d'une image

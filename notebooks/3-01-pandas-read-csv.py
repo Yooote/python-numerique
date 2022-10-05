@@ -805,12 +805,11 @@ print(df.shape)
 # %% scrolled=false
 # pour voir le contenu du fichier
 
-# %cat petit-titanic.csv
 
 # remarquez qu'on peut aussi le faire en Python pur
-#with open("petit-titanic.csv") as f:
-#    for line in f:
-#        print(line, end="")
+with open("petit-titanic.csv") as f:
+    for line in f:
+        print(line, end="")
 
 # %% [markdown]
 # 1. lisez le contenu de ce fichier avec les paramètres par défaut de `pandas.read_csv`  
@@ -850,4 +849,18 @@ print(df.shape)
 #
 
 # %%
-# votre code
+df = pd.read_csv("petit-titanic.csv", sep = ';', header = None , names = ['Identifiant', 'Survécu', 'Pclass', 
+           'Nom', 'Genre', 'Age', 'SibSp', 'Parch',
+           'Ticket', 'Tarif', 'Cabine', 'Embarquement'])
+pd.DataFrame.head(df, 3)
+
+print(df.shape)
+print(df.columns)
+print(df.index)
+df = df.set_index('Identifiant')
+print(df.index)
+#help(pd.read_csv)
+
+# %%
+
+# %%
