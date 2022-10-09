@@ -508,6 +508,16 @@ df.isna().to_numpy().sum()
 
 # %%
 # à vous
+df = pd.read_csv('titanic.csv', index_col='PassengerId')
+col_lst = ['Survived', 'Pclass', 'Sex', 'Embarked']
+for col in col_lst : 
+    print(np.size(pd.Series.unique(df[col])))
+    print(df[col].dtype)
+    
+print(df[col_lst])
+    
+
+
 
 # %% [markdown]
 # ***
@@ -528,3 +538,49 @@ df.isna().to_numpy().sum()
 
 # %%
 # à vous
+df = pd.read_csv('titanic.csv', index_col='PassengerId')
+print(df.isna().sum())
+
+print(np.size(pd.Series.unique(df['Pclass'])))
+
+homme = df['Sex'] == 'male'
+#print(homme.sum())
+H_nb = homme.sum()
+femme = df['Sex'] == 'female'
+#print(femme.sum())
+F_nb = femme.sum()
+
+print("le ratio d'hommes est ", H_nb/(H_nb+F_nb)*100, "le ratio de femmes est ", F_nb/(H_nb+F_nb)*100)
+
+jeunes_adultes = (df['Age'] <= 40) & (df['Age'] >= 20)
+j_a_nb = jeunes_adultes.sum()
+nb = np.size(df['Age'])
+print('il y a ', j_a_nb/nb*100, 'pourcents de jeunes adultes')
+
+survivant_lst = df['Survived'] == 1
+survivant_nb = survivant_lst.sum()
+passagers_nb = np.size(df['Survived'])
+print('il y a ', (survivant_nb/passagers_nb)*100, 'pourcent de survivants')
+
+survivant_f_1_nb = ((df['Survived'] == 1) & (df['Sex'] == 'female') & (df['Pclass'] == 1)).sum()
+nb_f_1 =  ((df['Sex'] == 'female') & (df['Pclass'] == 1)).sum()
+
+survivant_m_1_nb = ((df['Survived'] == 1) & (df['Sex'] == 'male') & (df['Pclass'] == 1)).sum()
+nb_m_1 =  ((df['Sex'] == 'male') & (df['Pclass'] == 1)).sum()
+
+survivant_f_2_nb = ((df['Survived'] == 1) & (df['Sex'] == 'female') & (df['Pclass'] == 2)).sum()
+nb_f_2 =  ((df['Sex'] == 'female') & (df['Pclass'] == 2)).sum()
+
+survivant_m_2_nb = ((df['Survived'] == 1) & (df['Sex'] == 'male') & (df['Pclass'] == 2)).sum()
+nb_m_2 =  ((df['Sex'] == 'male') & (df['Pclass'] == 2)).sum()
+
+survivant_f_3_nb = ((df['Survived'] == 1) & (df['Sex'] == 'female') & (df['Pclass'] == 3)).sum()
+nb_f_3 =  ((df['Sex'] == 'female') & (df['Pclass'] == 3)).sum()
+
+survivant_m_3_nb = ((df['Survived'] == 1) & (df['Sex'] == 'male') & (df['Pclass'] == 3)).sum()
+nb_m_3 =  ((df['Sex'] == 'male') & (df['Pclass'] == 3)).sum()
+
+print("ratios dans l'ordre", survivant_f_1_nb/nb_f_1*100 , survivant_m_1_nb/nb_m_1*100 , survivant_f_2_nb/nb_f_2*100,
+     survivant_m_2_nb/nb_m_2*100, survivant_f_3_nb/nb_f_3*100, survivant_m_3_nb/nb_m_3*100)
+
+# %%

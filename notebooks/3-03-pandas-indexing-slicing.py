@@ -598,6 +598,7 @@ df.iloc[:, 0].shape
 
 # %%
 # votre code
+df_aux = pd.read_csv('titanic.csv', index_col='PassengerId')
 
 # %% [markdown]
 # 2. localisez l'élément d'index `40`  
@@ -606,18 +607,23 @@ df.iloc[:, 0].shape
 
 # %%
 # votre code
+print(df_aux.iloc[40])
+print(df_aux.iloc[40].dtype)
+print(df_aux.iloc[40,2])
 
 # %% [markdown]
 # 3. quel est le nom de la personne qui apparaît en avant-dernier dans le fichier
 
 # %%
 # votre code
+df_aux.iloc[-1,2]
 
 # %% [markdown]
 # 4. localisez les 3 derniers éléments de la ligne d'index `40`
 
 # %%
 # votre code
+df_aux.iloc[40,[-3,-2,-1]]
 
 # %% [markdown]
 # 5. localisez les 4 derniers éléments de la colonne `Cabin`
