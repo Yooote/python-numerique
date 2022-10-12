@@ -605,34 +605,40 @@ df_aux = pd.read_csv('titanic.csv', index_col='PassengerId')
 #   a. Quel est le type de l'élément ?  
 #   b. localisez le nom du passager d'index `40` ? 
 
-# %%
+# %% scrolled=false
 # votre code
-print(df_aux.iloc[40])
-print(df_aux.iloc[40].dtype)
-print(df_aux.iloc[40,2])
+print("l'elt d'index 40 est \n",df_aux.loc[40])
+print("il est de type \n", df_aux.loc[40].dtype)
+print("le nom du passager correspondant est \n", df_aux.loc[40,'Name'])
 
 # %% [markdown]
 # 3. quel est le nom de la personne qui apparaît en avant-dernier dans le fichier
 
 # %%
 # votre code
-df_aux.iloc[-1,2]
+df_new_1 = df_aux.copy()
+df_new_1 = df_new_1.iloc[-2] 
+print("l'avant dernière personne apparaissant dans le fichier est \n" , df_new_1.loc['Name'])
 
 # %% [markdown]
-# 4. localisez les 3 derniers éléments de la ligne d'index `40`
+# ###### 4. localisez les 3 derniers éléments de la ligne d'index `40`
 
-# %%
+# %% scrolled=false
 # votre code
-df_aux.iloc[40,[-3,-2,-1]]
+df_new_2 = df_aux.copy()
+df_new_2 = df_new_2.loc[40] 
+print("les trois derniers elt de la liste d'index 40 sont \n", df_new_2.iloc[-3:])
 
 # %% [markdown]
 # 5. localisez les 4 derniers éléments de la colonne `Cabin`
 
-# %%
+# %% scrolled=true
 # votre code
+df_new_3 = df_aux.copy()
+df_new_3 = df_new_3.iloc[-4:]
+print("les les 4 derniers éléments de la colonne Cabin sonts \n", df_new_3.loc[:,'Cabin'])
 
 # %%
-df['Cabin'].iloc[-4:]
 
 # %% [markdown]
 # 6. fabriquez une dataframe contenant
@@ -640,8 +646,11 @@ df['Cabin'].iloc[-4:]
 #   * les infos des 10 dernières lignes du fichier
 #   * pour les colonnes `Name`, `Pclass` et `Survived`
 
-# %%
+# %% scrolled=true
 # votre code
+df_new_4 = df_aux.iloc[-10:]
+df_new_4 = df_new_4.loc[:,['Name','Pclass','Survived']]
+df_new_4
 
 # %% [markdown]
 # ## indexation par un masque
@@ -813,12 +822,15 @@ df[df.Sex == 'female'].head()
 
 # %%
 # votre code
+selection = df [(df.Age >= 70) & (df.Pclass==1)]
+selection
 
 # %% [markdown]
 # 2. Combien trouvez-vous de passagers ?
 
 # %%
 # votre code
+print( 'on trouve', selection.Sex.size ,'passagers' )
 
 # %%
 len(selection)
@@ -828,13 +840,20 @@ len(selection)
 
 # %%
 # votre code
+selection_bis = selection.loc[:,'Name']
+selection_bis.iloc[1]
+
 
 # %% [markdown]
 # 4. Faites la même expression que la question 1  
 # en utilisant les fonctions `numpy.logical_and`, `numpy.logical_not`
 
-# %%
+# %% scrolled=true
 # votre code
+
+df [np.logical_and ( np.logical_not(df.Pclass > 1) , np.logical_and(np.logical_not(df.Age < 70) , df.Age.isna() == False ))]
+
+#np.logical_not(df.Age < 70) renvoie aussi les gens dont l'age n'est pas renseigné on a besoin du masque isna
 
 # %% [markdown]
 # ***
