@@ -463,18 +463,23 @@ for group, subdf in by_class_sex:
 # %%
 # votre code
 
+np.size(pd.Series.unique(df['Pclass'])) * np.size(pd.Series.unique(df['Sex'])) * np.size(pd.Series.unique(df['Survived']))
+
 # %% [markdown]
 # 2. calculez la partition avec `pandas.DataFrame.groupby`  
 #    et affichez les nombres d'items par groupe
 
 # %%
 # votre code
+df_by_class_sex_survived =  df.groupby(by = ['Sex','Pclass','Survived'] )
+df_by_class_sex_survived.size()
 
 # %% [markdown]
 # 3. affichez la dataframe des entrées pour les femmes qui ont péri et qui voyagaient en 1ère classe
 
 # %%
 # votre code
+df_by_class_sex_survived.get_group(('female',1,0))
 
 # %% [markdown]
 # 4. **révision**  
@@ -482,6 +487,8 @@ for group, subdf in by_class_sex:
 
 # %%
 # votre code
+df_aux = df[ (df['Sex']=='female') & (df['Pclass'] == 1) & (df ['Survived' ] == 0)]
+df_aux
 
 # %% [markdown]
 # 5. créez un `dict` avec les taux de survie par genre dans chaque classe
@@ -498,6 +505,12 @@ for group, subdf in by_class_sex:
 
 # %%
 # votre code
+df_by_class_sex =  df.groupby(by = ['Sex','Pclass'] )
+mondico = {}
+for (Sex, Pclass)  , sbdf in df_by_class_sex:
+    #print(Sex, Pclass, survived, len(sbdf) )
+    mondico[(Sex,Pclass)] = sbdf['Survived'].sum() / sbdf['Survived'].shape[0]
+print(mondico)
 
 # %% [markdown]
 # 6. créez à partir de ce `dict` une `pandas.Series`  
@@ -767,6 +780,7 @@ df.pivot_table(
 
 # %%
 # votre code
+df.pivot_table(values = 'Survived', index = 'Pclass', columns = 'Sex', aggfunc = sum  )
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### `pivot_table()` et multi-index
@@ -800,7 +814,7 @@ df = pd.read_csv('titanic.csv')
 # %%
 # votre code
 # plusieurs values
-df2 = ...
+df.pivot_table(values = ['Survived','Age'] , index = ['Pclass'], columns = 'Sex', aggfunc = sum  )
 
 # %% {"cell_style": "center"}
 df2.columns

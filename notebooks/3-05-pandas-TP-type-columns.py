@@ -123,6 +123,28 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %%
 # votre code
+import numpy as np 
+import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv('iris.csv')
+
+#print(df.head(3))
+
+#print(df.dtypes)
+
+
+print(df['Name'].str)
+
+df['Name'] = df['Name'].str.upper()
+
+print(df)
+
+print(df.dtypes)
+
+print(pd.Series.unique(df['Name']))
+Name_cat = pd.Series.astype(df['Name'], dtype = 'category')
+
 
 # %% [markdown] tags=["level_intermediate"]
 # ## fabriquer son propre type `category`
@@ -149,3 +171,5 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %% tags=["level_intermediate"]
 # votre code
+
+# %%
